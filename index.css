@@ -1,0 +1,38 @@
+body {
+    font-family: sans-serif;
+}
+
+#menu-bar {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: solid;
+}
+
+#about-us-content {
+    display: flex;
+}
+
+#about-us-image {
+    width: 30%;
+}
+
+#about-us-text {
+    width: 70%;
+}
+
+#location-content {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#location-image {
+    width: 30%;
+}
+
+#location-text {
+    width: 70%;
+}
+
+#footer {
+    border-top: solid;
+}
