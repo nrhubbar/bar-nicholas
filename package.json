@@ -1,0 +1,19 @@
+{
+  "name": "bar-nicholas",
+  "version": "1.0.0",
+  "description": "This package contains the source code for bar.nicholas-hubbard.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'No Tests'; exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrhubbar/bar-nicholas.git"
+  },
+  "author": "nrhubbar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nrhubbar/bar-nicholas/issues"
+  },
+  "homepage": "https://github.com/nrhubbar/bar-nicholas#readme"
+}
