@@ -38,7 +38,7 @@ body {
         flex-direction: row;
     }
 
-    #about-us-image {
+    .body-image {
         height: 40vh;
     }
 
@@ -46,28 +46,15 @@ body {
         display: flex;
         flex-direction: row-reverse;
     }
-    
-    #philosophy-image {
-        height: 40vh;
-    }
 }
 
 @media (max-aspect-ratio: 1/1) {
-    #about-us-content {
+    .body-content {
         display: flex;
         flex-direction: column;
     }
 
-    #about-us-image {
-        width: 100%;
-    }
-
-    #philosophy-content {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #philosophy-image {
+    .body-image {
         width: 100%;
     }
 }
