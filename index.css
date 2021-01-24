@@ -76,3 +76,7 @@ body {
     border-top: solid;
 }
 
+#footer > p {
+    font-style: italic;
+}
+
