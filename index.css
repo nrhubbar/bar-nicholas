@@ -38,6 +38,11 @@ body {
     justify-content: right;
 }
 
+#chat-gpt-attribution {
+    font-size: smaller;
+    font-style: italic;
+}
+
 @media (min-aspect-ratio: 1/1) {
     #about-us-content {
         display: flex;
