@@ -8,6 +8,7 @@ jobs:
   deploy:
     name: Deploy to S3
     runs-on: ubuntu-latest  # GitHub-hosted runners all use Ubuntu, "latest" is fine for web deploys
+    environment: prod
 
     permissions:
       id-token: write     # Required for OIDC
