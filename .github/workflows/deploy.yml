@@ -1,0 +1,62 @@
+name: Deploy Static Website to S3 + CloudFront
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    name: Deploy to S3
+    runs-on: ubuntu-latest  # GitHub-hosted runners all use Ubuntu, "latest" is fine for web deploys
+
+    permissions:
+      id-token: write     # Required for OIDC
+      contents: read      # To checkout the repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js (for build scripts, if needed)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'node'
+
+      # Optional: cache npm/yarn dependencies (uncomment if you're doing a build)
+      # - name: Cache Node modules
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.npm
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
+
+      # - name: Install dependencies
+      #   run: npm ci
+
+      # - name: Build project
+      #   run: npm run build
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::756988898359:role/bar-nicholas-website-pusher-role-01
+          aws-region: us-west-2
+
+      - name: Deploy to S3
+        env:
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+        run: |
+          set -e
+          aws s3 sync . s3://$S3_BUCKET_NAME \
+            --acl public-read \
+            --delete
+
+      - name: Invalidate CloudFront cache
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          set -e
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths "/*"
