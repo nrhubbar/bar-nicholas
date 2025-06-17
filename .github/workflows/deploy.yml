@@ -41,7 +41,7 @@ jobs:
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::756988898359:role/bar-nicholas-website-pusher-role-01
+          role-to-assume: ${{ secrets.WEBSITE_PUSHER_ROLE_NAME }}
           aws-region: us-west-2
 
       - name: Deploy to S3
